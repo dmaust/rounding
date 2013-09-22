@@ -1,0 +1,4 @@
+rounding
+========
+
+Stochastic Rounding
