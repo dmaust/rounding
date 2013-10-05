@@ -40,7 +40,7 @@ class StochasticRound(object):
         """
         scale = 10.0**self.precision
         scaled_x = x * scale
-        fraction = scaled_x - int(scaled_x)
+        fraction = scaled_x - math.floor(scaled_x)
         rounddown = fraction < self.random_generator.random()
         if rounddown:
             return math.floor(scaled_x) / scale
