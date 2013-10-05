@@ -1,4 +1,0 @@
-rounding
-========
-
-Stochastic Rounding
