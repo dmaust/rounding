@@ -8,4 +8,10 @@ caused by small values.
 
 One drawback to stochastic rounding is the output is non-deterministic,
 but this can be avoided by providing a custom deterministic generator, 
-or invoking random.Random() with a fixed seed.
+or invoking providing the random number generator with a fixed seed.
+
+.. code:: python
+  
+  r = random.Random()
+  r.seed(123)
+  sr = StochasticRound(precision=0, random_generator=r)
