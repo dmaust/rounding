@@ -4,6 +4,9 @@ Created on Sep 22, 2013
 @author: dmaust
 '''
 
+with open('README.rst') as f:
+    long_description = f.read()
+    
 try:
     from setuptools import setup
 except ImportError:
@@ -24,7 +27,8 @@ config = {
                    'License :: OSI Approved :: Apache Software License' ],
 
     'license': 'Apache License, Version 2.0',
-    'name': 'rounding'
+    'name': 'rounding',
+    'long_description': long_description
 }
 
 setup(**config)
