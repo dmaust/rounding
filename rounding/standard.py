@@ -9,7 +9,9 @@ from rounding.common import RounderBase
 
 class StandardRound(RounderBase):
     '''
-    Rounding class for traditional rounding of round nearest.
+    Rounding class for traditional rounding of round nearest. 
+    
+    In the event of a tie, the number is rounded up.
     '''
 
     def __init__(self, precision=0):
