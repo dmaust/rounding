@@ -5,8 +5,9 @@ Created on Oct 6, 2013
 '''
 
 import math
+from rounding.common import RounderBase
 
-class StandardRounding(object):
+class StandardRounding(RounderBase):
     '''
     Rounding class for traditional rounding of round nearest.
     '''
@@ -17,7 +18,8 @@ class StandardRounding(object):
         
         @param precision: Number of decimal places to round to.
         '''
-        self.precision = precision
+        super(StandardRounding, self).__init__(precision=precision)
+        
         
     def round(self, x):
         """Round the given value.
@@ -25,9 +27,7 @@ class StandardRounding(object):
         @param x: to round
         @type x: numeric  
         """
-        scale = 10.0**self.precision
-        scaled_x = x * scale
-        fraction = scaled_x - math.floor(scaled_x)
+        fraction, scaled_x, scale = self._get_fraction(x)
         rounddown = fraction < .5
         if rounddown:
             return math.floor(scaled_x) / scale
@@ -45,4 +45,4 @@ if __name__ == '__main__':
     
     print "Expected: ", expected
     print "Simple round: ", sum(round(num) for i in xrange(count))
-    print "Stochastic Round: ", sum(sr.round(num) for i in xrange(count)) 
+    print "Standard Round: ", sum(sr.round(num) for i in xrange(count)) 

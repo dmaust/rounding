@@ -6,8 +6,9 @@ Created on Sep 21, 2013
 
 import random
 import math
+from rounding.common import RounderBase
 
-class StochasticRound(object):
+class StochasticRound(RounderBase):
     '''
     Rounding class for performing stochastic rounding operations.
     
@@ -38,9 +39,9 @@ class StochasticRound(object):
         @param x: to round
         @type x: numeric  
         """
-        scale = 10.0**self.precision
-        scaled_x = x * scale
-        fraction = scaled_x - math.floor(scaled_x)
+        
+        fraction, scaled_x, scale = self._get_fraction(x)
+        
         rounddown = fraction < self.random_generator.random()
         if rounddown:
             return math.floor(scaled_x) / scale
@@ -62,7 +63,10 @@ if __name__=='__main__':
     num = 5.3
     count = 1000
     expected =  num * count
+    r = random.Random()
+    r.seed(123)
+    sr = StochasticRound(precision=0, random_generator=r)
     
     print "Expected: ", expected
     print "Simple round: ", sum(round(num) for i in xrange(count))
-    print "Stochastic Round: ", sum(sround((num)) for i in xrange(count)) 
+    print "Stochastic Round: ", sum(sr.round(num) for i in xrange(count)) 
