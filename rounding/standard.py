@@ -7,7 +7,7 @@ Created on Oct 6, 2013
 import math
 from rounding.common import RounderBase
 
-class StandardRounding(RounderBase):
+class StandardRound(RounderBase):
     '''
     Rounding class for traditional rounding of round nearest.
     '''
@@ -18,7 +18,7 @@ class StandardRounding(RounderBase):
         
         @param precision: Number of decimal places to round to.
         '''
-        super(StandardRounding, self).__init__(precision=precision)
+        super(StandardRound, self).__init__(precision=precision)
         
         
     def round(self, x):
@@ -30,9 +30,11 @@ class StandardRounding(RounderBase):
         fraction, scaled_x, scale = self._get_fraction(x)
         rounddown = fraction < .5
         if rounddown:
-            return math.floor(scaled_x) / scale
+            result = math.floor(scaled_x) / scale
         else:
-            return math.ceil(scaled_x) / scale
+            result = math.ceil(scaled_x) / scale
+        self._record_roundoff_error(x, result)
+        return result
          
     
     
@@ -41,8 +43,9 @@ if __name__ == '__main__':
     count = 1000
     expected =  num * count
     
-    sr = StandardRounding(precision=0)
+    sr = StandardRound(precision=0)
     
     print "Expected: ", expected
     print "Simple round: ", sum(round(num) for i in xrange(count))
-    print "Standard Round: ", sum(sr.round(num) for i in xrange(count)) 
+    print "Standard Round: ", sum(sr.round(num) for i in xrange(count))
+    print "Error: ", sr.roundoff_error 

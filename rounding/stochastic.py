@@ -30,8 +30,8 @@ class StochasticRound(RounderBase):
         @param precision: Number of decimal places to round to.
         @param random_generator: Generator for obtaining roundoffs
         '''
+        super(StochasticRound, self).__init__(precision=precision)
         self.random_generator = random_generator
-        self.precision = precision
         
     def round(self, x):
         """Round the given value.
@@ -44,9 +44,11 @@ class StochasticRound(RounderBase):
         
         rounddown = fraction < self.random_generator.random()
         if rounddown:
-            return math.floor(scaled_x) / scale
+            result = math.floor(scaled_x) / scale
         else:
-            return math.ceil(scaled_x) / scale
+            result = math.ceil(scaled_x) / scale
+        self._record_roundoff_error(x, result)
+        return result
          
 
 def sround(x, precision=0):
@@ -69,4 +71,6 @@ if __name__=='__main__':
     
     print "Expected: ", expected
     print "Simple round: ", sum(round(num) for i in xrange(count))
-    print "Stochastic Round: ", sum(sr.round(num) for i in xrange(count)) 
+    print "Stochastic Round: ", sum(sr.round(num) for i in xrange(count))
+    print "Error: ", sr.roundoff_error
+     
