@@ -1,6 +1,8 @@
 rounding
 ========
 
+Rounding methods
+
 Stochastic rounding provides a mechanism to eliminate accumulated 
 roundoff error in the presence of a distribution where for 
 individual samples, the roundoff error is skewed. This is typically
