@@ -15,7 +15,7 @@ except ImportError:
 config = {
     'description': 'Stochastic Rounding',
     'author': 'David Maust',
-    'url': 'https://github.com/dmaust/rounding',
+    'url': 'http://dmaust.github.io/rounding/',
     'author_email': 'david@dmaust.net',
     'version': '0.03',
     'install_requires': ['nose'],
