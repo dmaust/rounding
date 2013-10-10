@@ -17,7 +17,7 @@ def test_standard():
 def test_stochastic():
     stochastic = rounding.StochasticRound(random_generator=random.Random(123))
     total = sum(stochastic.round(123.45) for i in range(100))
-    assert (total>=12340 and total<=12360), "Rounds down some of the time:%d" % (total,)
+    assert (12340 <= total <= 12360), "Rounds down some of the time:%d" % (total,)
     # error + total = expected
     eq_(total-stochastic.cumulative_error, 12345)
 
