@@ -9,7 +9,7 @@ from rounding.common import RounderBase
 
 class StandardRound(RounderBase):
     '''
-    Rounding class for traditional rounding of rounding to the nearest number, and up in the case of a tie.
+    Rounding class for traditional rounding of rounding to the nearest number and up in the case of a tie.
     
     In the event of a tie, the number is rounded up. This differs from
     Python default of round toward even in the event of a tie.
