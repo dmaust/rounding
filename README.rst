@@ -3,6 +3,11 @@ rounding
 
 Rounding methods
 
+`StandardRound` rounds to the nearest, and in the event of a tie, rounds up.
+
+`RoundToEven` rounds to the nearest, but in the event of a tie, rounds toward 
+the nearest even number.
+
 Stochastic rounding provides a mechanism to eliminate accumulated 
 roundoff error in the presence of a distribution where for 
 individual samples, the roundoff error is skewed. This is typically
