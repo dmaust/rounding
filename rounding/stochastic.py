@@ -23,7 +23,7 @@ class StochasticRound(RounderBase):
     '''
 
 
-    def __init__(self, precision=0, random_generator=random.Random()):
+    def __init__(self, precision=0, random_generator=random.Random(), minimum_stochastic_distance=0):
         '''
         Initialize the rounding object.
         
@@ -32,6 +32,7 @@ class StochasticRound(RounderBase):
         '''
         super(StochasticRound, self).__init__(precision=precision)
         self.random_generator = random_generator
+        self.minimum_stochastic_distance = minimum_stochastic_distance
         
     def round(self, x):
         """Round the given value.
@@ -39,14 +40,18 @@ class StochasticRound(RounderBase):
         @param x: to round
         @type x: numeric  
         """
-        
         fraction, scaled_x, scale = self._get_fraction(x)
-        
-        rounddown = fraction < self.random_generator.random()
-        if rounddown:
-            result = math.floor(scaled_x) / scale
+
+        if fraction < self.minimum_stochastic_distance or 1-fraction <self.minimum_stochastic_distance:
+            result = round(x,self.precision)
+
         else:
-            result = math.ceil(scaled_x) / scale
+            rounddown = fraction < self.random_generator.random()
+            if rounddown:
+                result = math.floor(scaled_x) / scale
+            else:
+                result = math.ceil(scaled_x) / scale
+
         self._record_roundoff_error(x, result)
         return result
          
@@ -67,7 +72,7 @@ if __name__=='__main__':
     expected =  num * count
     r = random.Random()
     r.seed(123)
-    sr = StochasticRound(precision=0, random_generator=r)
+    sr = StochasticRound(precision=0, random_generator=r, minimum_stochastic_distance=0.25)
     
     print "Expected: ", expected
     print "Simple round: ", sum(round(num) for i in xrange(count))
