@@ -13,7 +13,7 @@ except ImportError:
     from distutils.core import setup
 
 config = {
-    'description': 'Stochastic Rounding',
+    'description': 'Variety of rounding methods and implementations',
     'author': 'David Maust',
     'url': 'http://dmaust.github.io/rounding/',
     'author_email': 'david@dmaust.net',
