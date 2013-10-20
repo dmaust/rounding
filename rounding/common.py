@@ -17,6 +17,7 @@ class RounderBase(object):
         '''
         self.precision = precision
         self.cumulative_error = 0
+        self.count = 0
         
     def _get_fraction(self, x):
         
@@ -27,7 +28,12 @@ class RounderBase(object):
     
     def _record_roundoff_error(self, x, result):
         self.cumulative_error += result - x
+        self.count += 1
         
     @property
     def roundoff_error(self):
         return self.cumulative_error
+
+    @property
+    def average_roundoff(self):
+        return self.cumulative_error / self.count
