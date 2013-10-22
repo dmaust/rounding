@@ -1,20 +1,20 @@
-'''
+"""
 Created on Oct 6, 2013
 
 @author: dmaust
-'''
+"""
 import math
 
-class RounderBase(object):
-    '''
-    Abstract base class for rounding
-    '''
 
+class RounderBase(object):
+    """
+    Abstract base class for rounding
+    """
 
     def __init__(self, precision=0):
-        '''
+        """
         Constructor
-        '''
+        """
         self.precision = precision
         self.cumulative_error = 0
         self.count = 0

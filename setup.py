@@ -1,8 +1,8 @@
-'''
+"""
 Created on Sep 22, 2013
 
 @author: dmaust
-'''
+"""
 
 with open('README.rst') as f:
     long_description = f.read()

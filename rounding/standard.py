@@ -1,29 +1,29 @@
-'''
+"""
 Created on Oct 6, 2013
 
 @author: dmaust
-'''
+"""
 
 import math
 from rounding.common import RounderBase
 
+
 class StandardRound(RounderBase):
-    '''
+    """
     Rounding class for traditional rounding of rounding to the nearest number and up in the case of a tie.
-    
+
     In the event of a tie, the number is rounded up. This differs from
     Python default of round toward even in the event of a tie.
-    '''
+    """
 
     def __init__(self, precision=0):
-        '''
+        """
         Initialize the rounding object.
-        
+
         @param precision: Number of decimal places to round to.
-        '''
+        """
         super(StandardRound, self).__init__(precision=precision)
-        
-        
+
     def round(self, x):
         """Round the given value.
         
@@ -41,21 +41,20 @@ class StandardRound(RounderBase):
          
 
 class RoundTowardEven(RounderBase):
-    '''
+    """
     Rounding class for traditional rounding of rounding to the nearest number and toward even in the case of a tie.
 
     In the event of a tie, the number is rounded up. This differs from
     Python default of round toward even in the event of a tie.
-    '''
+    """
 
     def __init__(self, precision=0):
-        '''
+        """
         Initialize the rounding object.
 
         @param precision: Number of decimal places to round to.
-        '''
+        """
         super(RoundTowardEven, self).__init__(precision=precision)
-
 
     def round(self, x):
         """Round the given value.
@@ -75,7 +74,6 @@ class RoundTowardEven(RounderBase):
         return result
 
 
-    
 if __name__ == '__main__':
     num = 4.5
     count = 1000
