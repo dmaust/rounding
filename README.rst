@@ -8,7 +8,7 @@ Rounding methods
 `RoundToEven` rounds to the nearest, but in the event of a tie, rounds toward 
 the nearest even number.
 
-Stochastic rounding provides a mechanism to eliminate accumulated 
+`StochasticRound` provides a mechanism to eliminate accumulated
 roundoff error in the presence of a distribution where for 
 individual samples, the roundoff error is skewed. This is typically
 caused by small values.
@@ -22,3 +22,4 @@ or invoking providing the random number generator with a fixed seed.
   r = random.Random()
   r.seed(123)
   sr = StochasticRound(precision=0, random_generator=r)
+
