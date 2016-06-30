@@ -17,7 +17,7 @@ config = {
     'author': 'David Maust',
     'url': 'http://dmaust.github.io/rounding/',
     'author_email': 'david@dmaust.net',
-    'version': '0.03',
+    'version': '0.4',
     'install_requires': ['nose'],
     'packages': ['rounding'],
     'scripts': [],

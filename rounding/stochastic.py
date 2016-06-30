@@ -62,7 +62,7 @@ def sround(x, precision=0):
     @param x: to round.
     @param precision: decimal places to round.  
     """
-    sr = StochasticRound(precision=0)
+    sr = StochasticRound(precision=precision)
     return sr.round(x)
     
 if __name__ == '__main__':
